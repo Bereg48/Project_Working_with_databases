@@ -1,4 +1,4 @@
-
+from colorama import Fore, Back
 
 from src.utils import DBManager
 from src.config import config
@@ -6,11 +6,11 @@ from src.function import get_request, save_vacancies_to_db, parsing_vacancies, c
 
 
 def main():
-    keyword = 'Python'          # Ключевое слово поиска на hh.ru
-    page = 0                    # Индекс страницы, начинается с 0. Значение по умолчанию 0, т.е. первая страница
-    per_page = 22               # Кол-во вакансий на 1 странице (max 22)
-    database_name = 'hh_bd'     # Название БД
-    params = config()           # Параметры получающие данные через конфиг из файла database.ini
+    keyword = 'Python'  # Ключевое слово поиска на hh.ru
+    page = 0  # Индекс страницы, начинается с 0. Значение по умолчанию 0, т.е. первая страница
+    per_page = 22  # Кол-во вакансий на 1 странице (max 22)
+    database_name = 'hh_bd'  # Название БД
+    params = config()  # Параметры получающие данные через конфиг из файла database.ini
 
     # Получение вакансий по keyword.
     hh_vacancies = parsing_vacancies(get_request(keyword, page, per_page))
@@ -28,14 +28,14 @@ def main():
 
     while True:
 
-        print("""
-        1 - Список employer и количество vacancies.
-        2 - Список vacancies с указанием названия employer, vacancies, salary и URL на вакансию.
+        print(Fore.YELLOW + """
+        1 - Список работодателей и кол-во вакансий.
+        2 - Список вакансий с указанием названия работодателей, вакансий, ЗП и URL на вакансию.
         3 - Средняя ЗП
-        4 - Список vacancies, у которых salary выше средней.
+        4 - Список вакансий, у которых ЗП выше средней.
         5 - Найти вакансии по ключевому слову.
             """)
-        user_answer = input('Ваш выбор: ')
+        user_answer = input(Back.BLACK + 'Ваш выбор: ')
 
         if user_answer == '1':
             emp_info = dbmanager.get_companies_and_vacancies_count()
@@ -66,7 +66,7 @@ def main():
         print("Продолжить?")
         answer = input("Y/N: ").upper()
         if answer == 'N':
-            print("!!Пока!!")
+            print("!!До новых встреч!!")
             break
 
 
