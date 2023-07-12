@@ -58,28 +58,6 @@ class DBManager:
                 result = cur.fetchall()
         conn.close()
         return result
-        # req = requests.get('https://api.hh.ru/employers')
-        # data = req.content.decode()
-        # req.close()
-        # count_of_employers = json.loads(data)['found']
-        # employers = []
-        # i = 0
-        # j = count_of_employers
-        # while i < j:
-        #     req = requests.get('https://api.hh.ru/employers/' + str(i + 1))
-        #     data = req.content.decode()
-        #     req.close()
-        #     jsObj = json.loads(data)
-        #     try:
-        #         employers.append([jsObj['id'], jsObj['name']])
-        #         i += 1
-        #         print([jsObj['id'], jsObj['name']])
-        #     except:
-        #         i += 1
-        #         j += 1
-        #     if i % 200 == 0:
-        #         time.sleep(0.2)
-        # return employers
 
     def get_avg_salary(self):
         """Метод get_avg_salary получает среднюю зарплату по вакансиям."""
@@ -133,44 +111,4 @@ class DBManager:
                 result = cur.fetchall()
         conn.close()
         return result
-    #
-    #
-    # def create_database(database_name: str, params: dict):
-    #     """Метод create_database создает базы данных и таблицы"""
-    #
-    #     conn = psycopg2.connect(dbname='postgres', **params)
-    #     conn.autocommit = True
-    #     cur = conn.cursor()
-    #
-    #     cur.execute(f"DROP DATABASE {database_name}")
-    #     cur.execute(f"CREATE DATABASE {database_name}")
-    #
-    #     conn.close()
-    #
-    #     conn = psycopg2.connect(dbname=database_name, **params)
-    #
-    #     with conn.cursor() as cur:
-    #         cur.execute("""
-    #             CREATE TABLE channels (
-    #                 channel_id SERIAL PRIMARY KEY,
-    #                 title VARCHAR(255) NOT NULL,
-    #                 views INTEGER,
-    #                 subscribers INTEGER,
-    #                 videos INTEGER,
-    #                 channel_url TEXT
-    #             )
-    #         """)
-    #
-    #     with conn.cursor() as cur:
-    #         cur.execute("""
-    #             CREATE TABLE videos (
-    #                 video_id SERIAL PRIMARY KEY,
-    #                 channel_id INT REFERENCES channels(channel_id),
-    #                 title VARCHAR NOT NULL,
-    #                 publish_date DATE,
-    #                 video_url TEXT
-    #             )
-    #         """)
-    #
-    #     conn.commit()
-    #     conn.close()
+
